@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublicId;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Skill extends Model
 {
     use HasUlids;
+    use HasPublicId;
 
     protected $fillable = [
         'name',
@@ -18,6 +20,13 @@ class Skill extends Model
         'proficiency_label',
         'sort_order',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'sort_order' => 'integer',
+        ];
+    }
 
     public function experiences(): BelongsToMany
     {
@@ -31,10 +40,5 @@ class Skill extends Model
         return $this->belongsToMany(Project::class)
             ->withPivot('evidence')
             ->withTimestamps();
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'public_id';
     }
 }

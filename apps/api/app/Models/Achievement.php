@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublicId;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 
 class Achievement extends Model
 {
     use HasUlids;
+    use HasPublicId;
 
     protected $fillable = [
         'title',
@@ -22,11 +24,7 @@ class Achievement extends Model
     {
         return [
             'date' => 'date',
+            'sort_order' => 'integer',
         ];
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'public_id';
     }
 }

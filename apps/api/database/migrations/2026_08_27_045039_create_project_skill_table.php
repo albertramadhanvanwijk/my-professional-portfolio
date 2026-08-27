@@ -9,13 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('project_skill', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
 
-            $table->foreignId('project_id')
+            $table->foreignUlid('project_id')
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->foreignId('skill_id')
+            $table->foreignUlid('skill_id')
                 ->constrained()
                 ->cascadeOnDelete();
 

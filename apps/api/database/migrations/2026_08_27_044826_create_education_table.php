@@ -8,8 +8,8 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('educations', function (Blueprint $table) {
-            $table->id();
+        Schema::create('education', function (Blueprint $table) {
+            $table->ulid('id')->primary();;
 
             $table->ulid('public_id')->unique();
 

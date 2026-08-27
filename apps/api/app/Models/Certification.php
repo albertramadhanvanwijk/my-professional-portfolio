@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublicId;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 
 class Certification extends Model
 {
     use HasUlids;
+    use HasPublicId;
 
     protected $fillable = [
         'name',
@@ -25,8 +27,4 @@ class Certification extends Model
         ];
     }
 
-    public function getRouteKeyName(): string
-    {
-        return 'public_id';
-    }
 }

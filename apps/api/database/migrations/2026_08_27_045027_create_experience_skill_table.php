@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('experience_skill', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
 
-            $table->foreignId('experience_id')
-                ->constrained()
+            $table->foreignUlid('experience_id')
+                ->constrained('experiences')
                 ->cascadeOnDelete();
 
-            $table->foreignId('skill_id')
-                ->constrained()
+            $table->foreignUlid('skill_id')
+                ->constrained('skills')
                 ->cascadeOnDelete();
 
             $table->text('evidence')->nullable();

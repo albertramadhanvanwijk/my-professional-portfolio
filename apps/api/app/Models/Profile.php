@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Profile extends Model
 {
@@ -24,6 +25,19 @@ class Profile extends Model
         'website_url',
         'available_for_work',
     ];
+
+    protected $casts = [
+        'available_for_work' => 'boolean',
+    ];
+
+    protected static function booted(): void
+    {
+        static::creating(function (Profile $profile) {
+            if (! $profile->public_id) {
+                $profile->public_id = (string) Str::ulid();
+            }
+        });
+    }
 
     public function getRouteKeyName(): string
     {

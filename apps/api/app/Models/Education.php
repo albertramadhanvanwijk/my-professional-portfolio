@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Education extends Model
 {
     use HasUlids;
 
+    protected $table = 'education';
     protected $fillable = [
         'institution',
         'degree',
@@ -28,6 +30,13 @@ class Education extends Model
             'grade' => 'decimal:2',
             'grade_scale' => 'decimal:2',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::creating(function (Education $education) {
+            $education->public_id ??= (string) Str::ulid();
+        });
     }
 
     public function getRouteKeyName(): string
