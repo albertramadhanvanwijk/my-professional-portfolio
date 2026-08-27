@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import type {
-  Profile,
-  Experience,
-  Project,
-  Skill,
-} from '~/types/portfolio'
+import { useSeoMeta } from '#imports'
+import { usePortfolioApi } from '~~/composable/usePortfolioApi'
 
 const api = usePortfolioApi()
 
