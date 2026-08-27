@@ -33,9 +33,9 @@ jobs:
         run: composer install --no-interaction --prefer-dist
 
       - name: Setup Laravel environment
-        run: 
-            cp .env.example .env
-            php artisan key:generate
+        run: |
+          cp .env.example .env
+          php artisan key:generate
 
       - name: Laravel tests
         working-directory: apps/api
