@@ -1,0 +1,36 @@
+services:
+
+  mysql:
+    image: mysql:8.4
+    container_name: albert-portfolio-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - portfolio
+
+  redis:
+    image: redis:7-alpine
+    container_name: albert-portfolio-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - portfolio
+
+networks:
+  portfolio:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  redis_data:

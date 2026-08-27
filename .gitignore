@@ -1,0 +1,45 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Node
+node_modules/
+.nuxt/
+.output/
+.nitro/
+dist/
+
+# Laravel
+/apps/api/vendor/
+/apps/api/storage/*.key
+/apps/api/storage/logs/*
+/apps/api/bootstrap/cache/*
+
+# Laravel generated
+/apps/api/storage/framework/cache/*
+/apps/api/storage/framework/sessions/*
+/apps/api/storage/framework/views/*
+
+# Test / coverage
+coverage/
+.phpunit.result.cache
+
+# Docker
+docker-volumes/
+
+# Logs
+*.log
+
+# Temporary
+tmp/
+temp/
